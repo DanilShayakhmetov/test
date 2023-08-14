@@ -37,6 +37,9 @@ function rank($matrix)
 
         foreach ($matrix as $row => $line) {
             if ($row > $i) {
+                if (!$matrix[$i][$i]) {
+                    continue;
+                }
                 $factor = $line[$i] / $matrix[$i][$i];
                 foreach ($line as $col => $item) {
                     if ($col >= $i) {
@@ -74,7 +77,7 @@ function transpose($matrix) {
 $matrix = getMatrix(10, 10);
 
 $matrix = [[1, -1, 2],[0,1,-1],[1,2,1]];
-$matrix = [[1, 1, 1],[1,1,1],[1,2,1]];
+//$matrix = [[1, 1, 1],[1,1,1],[1,2,1]];
 
 echo rank($matrix);
 
