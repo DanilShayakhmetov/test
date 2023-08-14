@@ -59,8 +59,6 @@ function getData($date) {
     $sql = "SELECT id, user_id, login_time, logout_time FROM session 
                 WHERE id IN (SELECT id FROM session 
                 WHERE login_time >= '$login' AND logout_time <= '$logout' OR logout_time IS NULL)
-                AND login_time >= (SELECT MIN(logout_time) FROM session 
-                WHERE login_time >= '$login' AND logout_time <= '$logout' OR logout_time IS NULL)
                 AND logout_time <= (SELECT MAX(login_time) FROM session 
                 WHERE login_time >= '$login' AND logout_time <= '$logout' OR logout_time IS NULL)";
 
