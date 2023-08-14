@@ -9,6 +9,7 @@ $recursive->setMaxDepth(-1);
 
 $date = "11 August 2023";
 
+//Classic
 //id, user_id, login_time, logout_time
 function fullLoadTime($date) {
     $sessions = getData($date);
@@ -35,7 +36,15 @@ function fullLoadTime($date) {
     echo 'Full load service time: ' . date(DATE_ATOM, $temp['login_time']) . '  -  ' . date(DATE_ATOM, $temp['logout_time']).' maximum users: ' .$temp['count'];
 }
 
+//Recursive
 //id, user_id, login_time, logout_time
+function getPeakInterval($date) {
+    $sessions = getData($date);
+    $temp['count'] = 0;
+    $temp = iteration($sessions, $temp);
+    echo 'Full load  service time: ' . date(DATE_ATOM, $temp['login_time']) . '  -  ' . date(DATE_ATOM, $temp['logout_time']).' maximum users: ' .$temp['count'];
+}
+
 function recursive($sessions, $target, $counter, &$temp) {
     $session = array_shift($sessions);
     if (sizeof($sessions)) {
@@ -52,7 +61,6 @@ function recursive($sessions, $target, $counter, &$temp) {
     }
 }
 
-//id, user_id, login_time, logout_time
 function iteration($sessions, $temp) {
     $base = $temp;
     if (sizeof($sessions)) {
@@ -61,23 +69,13 @@ function iteration($sessions, $temp) {
         if ($temp['count'] < $base['count']) {
             $temp = $base;
         }
-
+        echo $temp['count']. '    -   '. $temp['id'] . "\n";
         iteration($sessions, $temp);
     }  else {
         return $temp;
     }
 }
 
-//id, user_id, login_time, logout_time
-function getPeakInterval($date) {
-    $sessions = getData($date);
-
-    $temp['count'] = 0;
-    $temp = iteration($sessions, $temp);
-
-
-    echo 'Full load  service time: ' . date(DATE_ATOM, $temp['login_time']) . '  -  ' . date(DATE_ATOM, $temp['logout_time']).' maximum users: ' .$temp['count'];
-}
 
 //Recursive
 //getPeakInterval($date);
