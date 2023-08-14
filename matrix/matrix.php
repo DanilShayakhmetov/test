@@ -1,22 +1,22 @@
 <?php
 
-
 function getMatrix($n, $m)
 {
     $matrix = [];
-    while ($n > 0) {
-        $k = $m;
-        while ($k > 0) {
-            $matrix[$n][$k] = rand(0, 10);
-            $k--;
+    $i = 0;
+    $j = 0;
+    while ($i < $n) {
+        while ($j > $m) {
+            $matrix[$i][$j] = rand(-10, 10);
+            $j++;
         }
-        $n--;
+        $i++;
     }
 
     return $matrix;
 }
 
-function ranges($matrix)
+function rank($matrix)
 {
     if (sizeof($matrix) > sizeof($matrix[0])) {
         $matrix = transpose($matrix);
@@ -75,8 +75,6 @@ $matrix = getMatrix(10, 10);
 
 $matrix = [[1, -1, 2],[0,1,-1],[1,2,1]];
 $matrix = [[1, 1, 1],[1,1,1],[1,2,1]];
-echo ranges($matrix);
 
-//$a = getMatrix(10,10);
-//header("Content-Type: application/json");
-//echo json_encode($a);
+echo rank($matrix);
+
