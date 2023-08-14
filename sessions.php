@@ -12,31 +12,25 @@ function fullLoadTime($date) {
     foreach ($sessions as $k => $target) {
         $counter = 0;
         foreach ($sessions as $session) {
-            if ($target['login_time'] <= $session['login_time']
-                ||
-                $target['logout_time'] >= $session['logout_time']) {
+            if ($target['login_time'] >= $session['login_time']
+                &&
+                $target['logout_time'] <= $session['logout_time']) {
                 $counter++;
             }
         }
         if ($k) {
             if ($temp['count'] < $counter) {
-                $temp['id'] = $target['id'];
+                $temp = $target;
                 $temp['count'] = $counter;
             }
         } else {
-            $temp['id'] = $target['id'];
+            $temp = $target;
             $temp['count'] = $counter;
         }
     }
 
-    echo $temp['id'], '-------' ,$temp['count'];
+    echo 'Full load service time: ' . date(DATE_ATOM, $temp['login_time']) . '  -  ' . date(DATE_ATOM, $temp['logout_time']).' maximum users: ' .$temp['count'];
 
 }
 
 fullLoadTime($date);
-
-
-function recursiveCounter($sessions, $num) {
-
-
-}

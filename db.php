@@ -53,8 +53,7 @@ function getData($date) {
     $login = strtotime($date);
     $logout = strtotime($date) + 86400;
     $conn = getConnection();
-//    $sql = "SELECT id, user_id, login_time, logout_time FROM session
-//                WHERE login_time >= '$login' AND logout_time <= '$logout' OR logout_time IS NULL ";
+
 
 
     $sql = "SELECT id, user_id, login_time, logout_time FROM session 
