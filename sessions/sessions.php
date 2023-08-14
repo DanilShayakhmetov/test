@@ -80,9 +80,9 @@ function getPeakInterval($date) {
 }
 
 //Recursive
-getPeakInterval($date);
+//getPeakInterval($date);
 
 //Cycles
-//fullLoadTime($date);
+fullLoadTime($date);
 
 
