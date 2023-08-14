@@ -62,8 +62,6 @@ function iteration($sessions, $temp) {
             $temp = $base;
         }
 
-        echo $temp['id']. '   '. $temp['count']. "\n";
-
         iteration($sessions, $temp);
     }  else {
         return $temp;
