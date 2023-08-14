@@ -13,5 +13,5 @@
 
     * docker-compose up --build - поднимает контейнер с BD
     * cat backup.sql | docker exec -i mysql.test /usr/bin/mysql -u root --password=qwe test
-    * Если набора данных недостаточно то воспользоваться методом prepareDB() в db.php
+    * Если набора данных недостаточно то воспользоваться методом prepareDB() в db.php (раскоментировать последню строку и запустить)  
     * Решение приведено в sessions/sessions.php (php sessions.php)
