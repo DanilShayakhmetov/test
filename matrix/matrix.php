@@ -35,11 +35,13 @@ function rank($matrix)
         $matrix[$i] = $matrix[$max];
         $matrix[$max] = $temp;
 
+        if (!$matrix[$i][$i]) {
+            $i++;
+            continue;
+        }
+
         foreach ($matrix as $row => $line) {
             if ($row > $i) {
-                if (!$matrix[$i][$i]) {
-                    continue;
-                }
                 $factor = $line[$i] / $matrix[$i][$i];
                 foreach ($line as $col => $item) {
                     if ($col >= $i) {
